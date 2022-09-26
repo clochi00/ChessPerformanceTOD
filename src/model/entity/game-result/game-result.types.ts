@@ -1,7 +1,7 @@
 export enum EGameResult {
-  WIN = 0,
-  LOSE = 1,
-  DRAW = 2,
+  WIN = 'Win',
+  LOSE = 'Lose',
+  DRAW = 'Draw',
 }
 
 export enum EChessColor {
@@ -10,7 +10,7 @@ export enum EChessColor {
 }
 
 export interface IGameResult {
-  timestamp: number;
+  timestamp: Date;
   result: EGameResult;
   color: EChessColor;
 }

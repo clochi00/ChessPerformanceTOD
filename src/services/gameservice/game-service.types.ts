@@ -1,4 +1,4 @@
-import type { IGameResult } from '@/model/entity';
+import type { IGameResult } from '@/model/entity/game-result';
 import type { SpyInstance } from 'vitest';
 
 export interface IGameService {

@@ -6,9 +6,9 @@ export interface IGameResultDTO {
   uuid: string;
 }
 export interface IGameDTO {
-  timeClass: string;
-  timeControl: number;
-  endTime: number;
+  time_class: string;
+  time_control: number;
+  end_time: number;
   rated: boolean;
   accuracies?: {
     white: number;
@@ -17,4 +17,8 @@ export interface IGameDTO {
   rules: string;
   white: IGameResultDTO;
   black: IGameResultDTO;
+}
+
+export interface IGamesWrapperDTO {
+  games: IGameDTO[];
 }

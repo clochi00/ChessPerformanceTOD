@@ -2,14 +2,14 @@ import type { IGameDTO } from './game-dto.types';
 
 const mockGameDTOs = (): IGameDTO[] => [
   {
-    endTime: 1609488154,
+    end_time: 1609488154,
     rated: true,
     accuracies: {
       white: 51.51077253110951,
       black: 41.5311638133435,
     },
-    timeClass: 'rapid',
-    timeControl: 600,
+    time_class: 'rapid',
+    time_control: 600,
     rules: 'chess',
     white: {
       rating: 1058,
@@ -27,15 +27,15 @@ const mockGameDTOs = (): IGameDTO[] => [
     },
   },
   {
-    endTime: 1609495096,
+    end_time: 1609495096,
     rated: true,
     accuracies: {
       white: 90.80120022252264,
       black: 26.576431898814228,
     },
 
-    timeClass: 'rapid',
-    timeControl: 600,
+    time_class: 'rapid',
+    time_control: 600,
     rules: 'chess',
     white: {
       rating: 1042,
@@ -53,10 +53,10 @@ const mockGameDTOs = (): IGameDTO[] => [
     },
   },
   {
-    endTime: 1609513334,
+    end_time: 1609513334,
     rated: true,
-    timeClass: 'rapid',
-    timeControl: 600,
+    time_class: 'rapid',
+    time_control: 600,
     rules: 'chess',
     white: {
       rating: 1051,
@@ -74,10 +74,10 @@ const mockGameDTOs = (): IGameDTO[] => [
     },
   },
   {
-    endTime: 1609536503,
+    end_time: 1609536503,
     rated: true,
-    timeClass: 'rapid',
-    timeControl: 600,
+    time_class: 'rapid',
+    time_control: 600,
     rules: 'chess',
     white: {
       rating: 1116,
@@ -95,14 +95,14 @@ const mockGameDTOs = (): IGameDTO[] => [
     },
   },
   {
-    endTime: 1609589330,
+    end_time: 1609589330,
     rated: true,
     accuracies: {
       white: 19.245427789881113,
       black: 87.61217356611353,
     },
-    timeControl: 600,
-    timeClass: 'rapid',
+    time_control: 600,
+    time_class: 'rapid',
     rules: 'chess',
     white: {
       rating: 1035,
@@ -120,14 +120,14 @@ const mockGameDTOs = (): IGameDTO[] => [
     },
   },
   {
-    endTime: 1609749742,
+    end_time: 1609749742,
     rated: true,
     accuracies: {
       white: 56.543965922454,
       black: 41.94997638748591,
     },
-    timeControl: 600,
-    timeClass: 'rapid',
+    time_control: 600,
+    time_class: 'rapid',
     rules: 'chess',
     white: {
       rating: 1043,
@@ -145,14 +145,14 @@ const mockGameDTOs = (): IGameDTO[] => [
     },
   },
   {
-    endTime: 1609756403,
+    end_time: 1609756403,
     rated: true,
     accuracies: {
       white: 16.265795666965833,
       black: 51.77301788929801,
     },
-    timeControl: 600,
-    timeClass: 'rapid',
+    time_control: 600,
+    time_class: 'rapid',
     rules: 'chess',
     white: {
       rating: 1037,
@@ -170,10 +170,10 @@ const mockGameDTOs = (): IGameDTO[] => [
     },
   },
   {
-    endTime: 1609834434,
+    end_time: 1609834434,
     rated: true,
-    timeControl: 600,
-    timeClass: 'rapid',
+    time_control: 600,
+    time_class: 'rapid',
     rules: 'chess',
     white: {
       rating: 1008,
@@ -191,14 +191,14 @@ const mockGameDTOs = (): IGameDTO[] => [
     },
   },
   {
-    endTime: 1609836301,
+    end_time: 1609836301,
     rated: true,
     accuracies: {
       white: 95.93060711484121,
       black: 36.31097297050747,
     },
-    timeControl: 600,
-    timeClass: 'rapid',
+    time_control: 600,
+    time_class: 'rapid',
     rules: 'chess',
     white: {
       rating: 1053,
@@ -216,10 +216,10 @@ const mockGameDTOs = (): IGameDTO[] => [
     },
   },
   {
-    endTime: 1609838361,
+    end_time: 1609838361,
     rated: true,
-    timeControl: 600,
-    timeClass: 'rapid',
+    time_control: 600,
+    time_class: 'rapid',
     rules: 'chess',
     white: {
       rating: 1047,

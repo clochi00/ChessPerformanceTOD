@@ -13,8 +13,6 @@ const router = createRouter({
       path: '/analyse',
       name: 'analyse',
       beforeEnter(to, from, next) {
-        console.log(to.query);
-
         if (to.query.username) {
           next();
         } else {

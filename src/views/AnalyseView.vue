@@ -2,9 +2,8 @@
   <div class="container">
     <h1>Stats for {{ username }}</h1>
     <form>
-      <label for="year">Year</label>
-      <input @input="debounceYear" type="number" id="year" :value="selectedYear" />
-      <TimeClasses />
+      <YearSelection :start-year="startYear" @year-changed="yearChanged" />
+      <TimeClassSelection @class-added="addTimeClass" @class-removed="removeTimeClass" />
     </form>
     <p v-if="loading">Loading ...</p>
     <table v-else>
@@ -25,25 +24,34 @@
 import { useRoute } from 'vue-router';
 import { useStats } from '@/composables/stats';
 import { Stats, type IStats } from '@/model/entity';
-import TimeClasses from '../components/TimeClasses.vue';
+import YearSelection from '../components/YearSelection.vue';
+import TimeClassSelection from '../components/TimeClassSelection.vue';
+import type { ETimeClass } from '@/model/dto/game-dto.types';
 
+const { gameStats, loading, setUsername, selectedYear, selectedClasses } = useStats();
+
+// Set Username
 const username = useRoute().query.username as string;
 if (!username) {
   throw Error('No username provided. This should never happen');
 }
-const { gameStats, loading, selectedYear, setUsername } = useStats();
 setUsername(username);
 
-let debounce: ReturnType<typeof setTimeout> = setTimeout(() => '', 600);
-
-const debounceYear = (event: Event) => {
-  clearTimeout(debounce);
-  debounce = setTimeout(() => {
-    const target = event.target as HTMLInputElement;
-    selectedYear.value = Number(target.value) ?? selectedYear.value;
-  }, 1000);
+// Year Selection
+const startYear = selectedYear.value;
+const yearChanged = (year: number) => {
+  selectedYear.value = year;
 };
 
+// Time Classes
+const addTimeClass = (timeClass: ETimeClass) => {
+  selectedClasses.value.add(timeClass);
+};
+const removeTimeClass = (timeClass: ETimeClass) => {
+  selectedClasses.value.delete(timeClass);
+};
+
+// Stats
 const getStats = (hour: number): IStats => {
   return gameStats.value.get(hour) ?? new Stats();
 };

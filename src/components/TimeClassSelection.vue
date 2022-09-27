@@ -7,14 +7,15 @@
     <label for="bullet">Bullet</label>
     <input type="checkbox" id="bullet" @change="debounceTimeClasses" :value="ETimeClass.BULLET" checked />
   </div>
-  <p>{{ selectedClasses }}</p>
 </template>
 
 <script setup lang="ts">
-import { useStats } from '@/composables/stats';
 import { ETimeClass } from '@/model/dto/game-dto.types';
 
-const { selectedClasses } = useStats();
+const emit = defineEmits<{
+  (e: 'classAdded', timeclass: ETimeClass): void;
+  (e: 'classRemoved', timeclass: ETimeClass): void;
+}>();
 
 let debounce: ReturnType<typeof setTimeout> = setTimeout(() => '', 600);
 const debounceTimeClasses = (event: Event) => {
@@ -23,9 +24,9 @@ const debounceTimeClasses = (event: Event) => {
     const target = event.target as HTMLInputElement;
 
     if (target.checked) {
-      selectedClasses.value.add(target.value as ETimeClass);
+      emit('classAdded', target.value as ETimeClass);
     } else {
-      selectedClasses.value.delete(target.value as ETimeClass);
+      emit('classRemoved', target.value as ETimeClass);
     }
   }, 1000);
 };

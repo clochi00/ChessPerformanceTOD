@@ -1,35 +1,34 @@
 <template>
-  <h1>Stats for {{ userName }}</h1>
-  <li v-for="(item, index) in gameResults" :key="index">
+  <h1>Stats for {{ username }}</h1>
+  <form>
+    <label for="year">Year</label>
+    <input @input="debounceYear" type="number" id="year" :value="selectedYear" />
+  </form>
+  <p v-if="loading">Loading ...</p>
+  <li v-else v-for="(item, index) in gameResults" :key="index">
     {{ item.result }}
   </li>
 </template>
 
 <script setup lang="ts">
-import { useProvider } from '@/composables/provider';
-
-import type { IGameResult } from '@/model/entity/game-result';
-
-import { getYear } from 'date-fns';
-import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
-const { gameService } = useProvider();
+import { useStats } from '@/composables/stats';
 
-const userName = useRoute().query.username as string;
-if (!userName) {
+const username = useRoute().query.username as string;
+if (!username) {
   throw Error('No username provided. This should never happen');
 }
 
-const gameResults = ref([] as IGameResult[]);
-const selectedYear = ref(getYear(new Date()));
-
-const fetchGameStats = async () => {
-  console.log('where is my fetch');
-
-  gameResults.value = await gameService.fetchGamesByYear(selectedYear.value, userName);
-  console.log(gameResults.value);
+let debounce: ReturnType<typeof setTimeout> = setTimeout(() => '', 600);
+const debounceYear = (event: Event) => {
+  clearTimeout(debounce);
+  debounce = setTimeout(() => {
+    const target = event.target as HTMLInputElement;
+    selectedYear.value = Number(target.value) ?? selectedYear.value;
+  }, 1000);
 };
-onMounted(fetchGameStats);
+
+const { gameResults, loading, selectedYear } = useStats(username);
 </script>
 
 <style scoped></style>

@@ -1,9 +1,11 @@
 import type { IGameDTO, IGamesWrapperDTO } from '@/model/dto/game-dto.types';
 import type { IGameAdapter } from './game-adapter.types';
 import axios from 'axios';
+import mockGameDTOs from '@/model/dto/game-dto.mock';
 
 export class GameAdapter implements IGameAdapter {
   async fetchGamesForUserByYearAndMonth(username: string, year: number, month: number): Promise<IGameDTO[]> {
+    // return mockGameDTOs();
     const monthStr = month < 10 ? `0${month}` : `${month}`;
     try {
       const { data, status } = await axios.get<IGamesWrapperDTO>(

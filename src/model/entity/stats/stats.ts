@@ -28,4 +28,8 @@ export class Stats implements IStats {
   getWLRatio(): number {
     return this.wins - this.losses;
   }
+
+  getGameCount(): number {
+    return this.wins + this.losses + this.draws;
+  }
 }

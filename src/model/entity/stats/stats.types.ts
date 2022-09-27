@@ -8,4 +8,6 @@ export interface IStats {
   addToStats(result: IGameResult): void;
 
   getWLRatio(): number;
+
+  getGameCount(): number;
 }

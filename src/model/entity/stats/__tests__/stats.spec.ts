@@ -26,4 +26,15 @@ describe('>> Stats', () => {
       expect(stats.getWLRatio()).toEqual(1);
     });
   });
+
+  describe('> getGameCount()', () => {
+    it('calculates correctly', () => {
+      const stats = new Stats();
+      stats.addToStats(mockGameResults()[0]);
+      stats.addToStats(mockGameResults()[1]);
+      stats.addToStats(mockGameResults()[2]);
+      stats.addToStats(mockGameResults()[3]);
+      expect(stats.getGameCount()).toEqual(4);
+    });
+  });
 });

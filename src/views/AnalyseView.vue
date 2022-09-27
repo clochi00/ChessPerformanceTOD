@@ -1,21 +1,31 @@
 <template>
-  <h1>Stats for {{ username }}</h1>
-  <form>
-    <label for="year">Year</label>
-    <input @input="debounceYear" type="number" id="year" :value="selectedYear" />
-  </form>
-  <p v-if="loading">Loading ...</p>
-  <table v-else>
-    <tr>
-      <th>Hour of day</th>
-      <th>W/L Ratio</th>
-    </tr>
+  <div class="container">
+    <h1>Stats for {{ username }}</h1>
+    <form>
+      <label for="year">Year</label>
+      <input @input="debounceYear" type="number" id="year" :value="selectedYear" />
+      <div class="timeclasses">
+        <label for="rapid">Rapid</label>
+        <input type="checkbox" id="rapid" />
+        <label for="rapid">Blitz</label>
+        <input type="checkbox" id="rapid" />
+        <label for="rapid">Bullet</label>
+        <input type="checkbox" id="rapid" />
+      </div>
+    </form>
+    <p v-if="loading">Loading ...</p>
+    <table v-else>
+      <tr>
+        <th>Hour of day</th>
+        <th>W/L Ratio</th>
+      </tr>
 
-    <tr v-for="hour in 24" :key="hour">
-      <td>{{ hour - 1 }}</td>
-      <td>{{ getStats(hour - 1).getWLRatio() }}</td>
-    </tr>
-  </table>
+      <tr v-for="hour in 24" :key="hour">
+        <td>{{ hour - 1 }}</td>
+        <td>{{ getStats(hour - 1).getWLRatio() }}</td>
+      </tr>
+    </table>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -39,8 +49,6 @@ const debounceYear = (event: Event) => {
 
 const { gameStats, loading, selectedYear } = useStats(username);
 const getStats = (hour: number): IStats => {
-  console.log(hour);
-
   return gameStats.value.get(hour) ?? new Stats();
 };
 </script>

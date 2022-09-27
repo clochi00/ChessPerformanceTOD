@@ -1,5 +1,6 @@
+import type { IGameDTO } from '@/model/dto/game-dto.types';
 import { fromUnixTime } from 'date-fns';
-import type { IGameDTO } from '../dto/game-dto.types';
+
 import { EChessColor, EGameResult, type IGameResult } from './game-result.types';
 
 export class GameResult implements IGameResult {

@@ -17,7 +17,7 @@ const emit = defineEmits<{
   (e: 'classRemoved', timeclass: ETimeClass): void;
 }>();
 
-let debounce: ReturnType<typeof setTimeout> = setTimeout(() => '', 600);
+let debounce: ReturnType<typeof setTimeout> = setTimeout(() => '', 200);
 const debounceTimeClasses = (event: Event) => {
   clearTimeout(debounce);
   debounce = setTimeout(() => {
@@ -28,7 +28,7 @@ const debounceTimeClasses = (event: Event) => {
     } else {
       emit('classRemoved', target.value as ETimeClass);
     }
-  }, 1000);
+  }, 200);
 };
 </script>
 

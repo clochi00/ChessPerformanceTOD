@@ -1,3 +1,5 @@
+import type { ETimeClass } from '@/model/dto/game-dto.types';
+
 export enum EGameResult {
   WIN = 'Win',
   LOSE = 'Lose',
@@ -13,4 +15,5 @@ export interface IGameResult {
   timestamp: Date;
   result: EGameResult;
   color: EChessColor;
+  timeClass: ETimeClass;
 }

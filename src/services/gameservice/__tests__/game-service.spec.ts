@@ -22,7 +22,7 @@ describe('>> Game Service', () => {
 
     it('maps the entities correctly', async () => {
       mockAdapter.fetchGamesForUserByYearAndMonth.mockResolvedValueOnce(mockApiResponseGameDTOsOk());
-      const result = await undertest.fetchGamesByYear(2022, 'clochi');
+      const result = await undertest.fetchGamesByYear(2022, 'clochi', new Set());
       expect(result.length).toEqual(mockGameDTOs().length);
       expect(result[0].result).toEqual(EGameResult.LOSE);
       expect(result[0].color).toEqual(EChessColor.BLACK);
@@ -34,29 +34,29 @@ describe('>> Game Service', () => {
 
     it('calls adapter for all 12 months when called with a past year', async () => {
       const spied = spyOn(mockAdapter, 'fetchGamesForUserByYearAndMonth');
-      await undertest.fetchGamesByYear(2021, 'clochi');
+      await undertest.fetchGamesByYear(2021, 'clochi', new Set());
       expect(spied.callCount).toEqual(12);
     });
 
     it('filters out non matching time classes correctly', async () => {
       mockAdapter.fetchGamesForUserByYearAndMonth.mockResolvedValueOnce(mockApiResponseGameDTOsOk());
-      let result = await undertest.fetchGamesByYear(2022, 'clochi', Array.of(ETimeClass.BULLET));
+      let result = await undertest.fetchGamesByYear(2022, 'clochi', new Set([ETimeClass.BULLET]));
       expect(result.length).toEqual(1);
       expect(result[0].result).toEqual(EGameResult.LOSE);
       expect(result[0].color).toEqual(EChessColor.BLACK);
 
       mockAdapter.fetchGamesForUserByYearAndMonth.mockResolvedValueOnce(mockApiResponseGameDTOsOk());
-      result = await undertest.fetchGamesByYear(2022, 'clochi', Array.of(ETimeClass.BLITZ));
+      result = await undertest.fetchGamesByYear(2022, 'clochi', new Set([ETimeClass.BLITZ]));
       expect(result.length).toEqual(1);
       expect(result[0].result).toEqual(EGameResult.WIN);
       expect(result[0].color).toEqual(EChessColor.BLACK);
 
       mockAdapter.fetchGamesForUserByYearAndMonth.mockResolvedValueOnce(mockApiResponseGameDTOsOk());
-      result = await undertest.fetchGamesByYear(2022, 'clochi', Array.of(ETimeClass.BULLET, ETimeClass.BLITZ));
+      result = await undertest.fetchGamesByYear(2022, 'clochi', new Set([ETimeClass.BULLET, ETimeClass.BLITZ]));
       expect(result.length).toEqual(2);
 
       mockAdapter.fetchGamesForUserByYearAndMonth.mockResolvedValueOnce(mockApiResponseGameDTOsOk());
-      result = await undertest.fetchGamesByYear(2022, 'clochi', Array.of(ETimeClass.RAPID, ETimeClass.BLITZ));
+      result = await undertest.fetchGamesByYear(2022, 'clochi', new Set([ETimeClass.RAPID, ETimeClass.BLITZ]));
       expect(result.length).toEqual(mockGameDTOs().length - 1);
     });
   });

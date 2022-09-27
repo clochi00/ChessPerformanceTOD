@@ -4,14 +4,7 @@
     <form>
       <label for="year">Year</label>
       <input @input="debounceYear" type="number" id="year" :value="selectedYear" />
-      <div class="timeclasses">
-        <label for="rapid">Rapid</label>
-        <input type="checkbox" id="rapid" />
-        <label for="rapid">Blitz</label>
-        <input type="checkbox" id="rapid" />
-        <label for="rapid">Bullet</label>
-        <input type="checkbox" id="rapid" />
-      </div>
+      <TimeClasses />
     </form>
     <p v-if="loading">Loading ...</p>
     <table v-else>
@@ -32,13 +25,17 @@
 import { useRoute } from 'vue-router';
 import { useStats } from '@/composables/stats';
 import { Stats, type IStats } from '@/model/entity';
+import TimeClasses from '../components/TimeClasses.vue';
 
 const username = useRoute().query.username as string;
 if (!username) {
   throw Error('No username provided. This should never happen');
 }
+const { gameStats, loading, selectedYear, setUsername } = useStats();
+setUsername(username);
 
 let debounce: ReturnType<typeof setTimeout> = setTimeout(() => '', 600);
+
 const debounceYear = (event: Event) => {
   clearTimeout(debounce);
   debounce = setTimeout(() => {
@@ -47,7 +44,6 @@ const debounceYear = (event: Event) => {
   }, 1000);
 };
 
-const { gameStats, loading, selectedYear } = useStats(username);
 const getStats = (hour: number): IStats => {
   return gameStats.value.get(hour) ?? new Stats();
 };

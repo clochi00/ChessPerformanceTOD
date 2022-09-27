@@ -12,14 +12,14 @@ export class GameService implements IGameService {
     console.log('Service constructed');
   }
 
-  async fetchGamesByYear(year: number, username: string, timeClasses?: ETimeClass[]): Promise<IGameResult[]> {
+  async fetchGamesByYear(year: number, username: string, timeClasses: Set<ETimeClass>): Promise<IGameResult[]> {
     const result: IGameResult[] = [];
     const maxMonth = this.getMaxMonthForYear(year);
     for (let month = 1; month <= maxMonth; ++month) {
       const response = await this.gameAdapter.fetchGamesForUserByYearAndMonth(username, year, month);
 
       for (const dto of response.data) {
-        if (!timeClasses || timeClasses.includes(dto.time_class)) {
+        if (timeClasses.size == 0 || timeClasses.has(dto.time_class)) {
           result.push(new GameResult(dto, username));
         }
       }

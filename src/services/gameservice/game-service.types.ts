@@ -3,7 +3,7 @@ import type { IGameResult } from '@/model/entity/game-result';
 import type { SpyInstance } from 'vitest';
 
 export interface IGameService {
-  fetchGamesByYear(year: number, username: string, timeClasses?: ETimeClass[]): Promise<IGameResult[]>;
+  fetchGamesByYear(year: number, username: string, timeClasses: Set<ETimeClass>): Promise<IGameResult[]>;
 }
 
 export interface IGameServiceMock {

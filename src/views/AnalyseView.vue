@@ -8,16 +8,12 @@
   <table v-else>
     <tr>
       <th>Hour of day</th>
-      <th>Wins</th>
-      <th>Losses</th>
-      <th>Draws</th>
+      <th>W/L Ratio</th>
     </tr>
 
     <tr v-for="hour in 24" :key="hour">
       <td>{{ hour - 1 }}</td>
-      <td>{{ getStats(hour - 1).wins }}</td>
-      <td>{{ getStats(hour - 1).losses }}</td>
-      <td>{{ getStats(hour - 1).draws }}</td>
+      <td>{{ getStats(hour - 1).getWLRatio() }}</td>
     </tr>
   </table>
 </template>

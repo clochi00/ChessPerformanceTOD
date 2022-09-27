@@ -23,7 +23,7 @@ describe('>> Stats', () => {
       stats.addToStats(mockGameResults()[1]);
       stats.addToStats(mockGameResults()[2]);
       stats.addToStats(mockGameResults()[3]);
-      expect(stats.getWLRation()).toEqual(1);
+      expect(stats.getWLRatio()).toEqual(1);
     });
   });
 });

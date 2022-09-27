@@ -1,4 +1,4 @@
-import type { IGameDTO } from './game-dto.types';
+import { ETimeClass, type IGameDTO } from './game-dto.types';
 
 const mockGameDTOs = (): IGameDTO[] => [
   {
@@ -8,7 +8,7 @@ const mockGameDTOs = (): IGameDTO[] => [
       white: 51.51077253110951,
       black: 41.5311638133435,
     },
-    time_class: 'rapid',
+    time_class: ETimeClass.BULLET,
     time_control: 600,
     rules: 'chess',
     white: {
@@ -34,7 +34,7 @@ const mockGameDTOs = (): IGameDTO[] => [
       black: 26.576431898814228,
     },
 
-    time_class: 'rapid',
+    time_class: ETimeClass.RAPID,
     time_control: 600,
     rules: 'chess',
     white: {
@@ -55,7 +55,7 @@ const mockGameDTOs = (): IGameDTO[] => [
   {
     end_time: 1609513334,
     rated: true,
-    time_class: 'rapid',
+    time_class: ETimeClass.RAPID,
     time_control: 600,
     rules: 'chess',
     white: {
@@ -76,7 +76,7 @@ const mockGameDTOs = (): IGameDTO[] => [
   {
     end_time: 1609536503,
     rated: true,
-    time_class: 'rapid',
+    time_class: ETimeClass.RAPID,
     time_control: 600,
     rules: 'chess',
     white: {
@@ -102,7 +102,7 @@ const mockGameDTOs = (): IGameDTO[] => [
       black: 87.61217356611353,
     },
     time_control: 600,
-    time_class: 'rapid',
+    time_class: ETimeClass.RAPID,
     rules: 'chess',
     white: {
       rating: 1035,
@@ -127,7 +127,7 @@ const mockGameDTOs = (): IGameDTO[] => [
       black: 41.94997638748591,
     },
     time_control: 600,
-    time_class: 'rapid',
+    time_class: ETimeClass.RAPID,
     rules: 'chess',
     white: {
       rating: 1043,
@@ -152,7 +152,7 @@ const mockGameDTOs = (): IGameDTO[] => [
       black: 51.77301788929801,
     },
     time_control: 600,
-    time_class: 'rapid',
+    time_class: ETimeClass.RAPID,
     rules: 'chess',
     white: {
       rating: 1037,
@@ -173,7 +173,7 @@ const mockGameDTOs = (): IGameDTO[] => [
     end_time: 1609834434,
     rated: true,
     time_control: 600,
-    time_class: 'rapid',
+    time_class: ETimeClass.RAPID,
     rules: 'chess',
     white: {
       rating: 1008,
@@ -198,7 +198,7 @@ const mockGameDTOs = (): IGameDTO[] => [
       black: 36.31097297050747,
     },
     time_control: 600,
-    time_class: 'rapid',
+    time_class: ETimeClass.RAPID,
     rules: 'chess',
     white: {
       rating: 1053,
@@ -219,7 +219,7 @@ const mockGameDTOs = (): IGameDTO[] => [
     end_time: 1609838361,
     rated: true,
     time_control: 600,
-    time_class: 'rapid',
+    time_class: ETimeClass.BLITZ,
     rules: 'chess',
     white: {
       rating: 1047,

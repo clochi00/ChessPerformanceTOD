@@ -7,5 +7,5 @@ export interface IStats {
 
   addToStats(result: IGameResult): void;
 
-  getWLRation(): number;
+  getWLRatio(): number;
 }

@@ -1,3 +1,10 @@
+export enum ETimeClass {
+  DAILY = 'daily',
+  RAPID = 'rapid',
+  BLITZ = 'blitz',
+  BULLET = 'bullet',
+}
+
 export interface IGameResultDTO {
   rating: number;
   result: string;
@@ -5,8 +12,9 @@ export interface IGameResultDTO {
   id: string;
   uuid: string;
 }
+
 export interface IGameDTO {
-  time_class: string;
+  time_class: ETimeClass;
   time_control: number;
   end_time: number;
   rated: boolean;

@@ -14,8 +14,8 @@ export class GameService implements IGameService {
     const result: IGameResult[] = [];
     const maxMonth = this.getMaxMonthForYear(year);
     for (let month = 1; month <= maxMonth; ++month) {
-      const gameDTOs = await this.gameAdapter.fetchGamesForUserByYearAndMonth(username, year, month);
-      for (const dto of gameDTOs) {
+      const response = await this.gameAdapter.fetchGamesForUserByYearAndMonth(username, year, month);
+      for (const dto of response.data) {
         result.push(new GameResult(dto, username));
       }
     }

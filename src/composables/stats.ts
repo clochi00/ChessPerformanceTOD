@@ -1,20 +1,19 @@
-import type { IGameResult } from '@/model/entity';
+import type { IStats } from '@/model/entity';
 import { getYear } from 'date-fns';
 import { onMounted, ref, watch } from 'vue';
 import { useProvider } from './provider';
 
 export const useStats = (username: string) => {
-  const { gameService } = useProvider();
+  const { gameService, statisticService } = useProvider();
   const loading = ref(true);
 
-  const gameResults = ref([] as IGameResult[]);
+  const gameStats = ref(new Map<number, IStats>());
   const selectedYear = ref(getYear(new Date()));
 
   const fetchGameStats = async () => {
     loading.value = true;
-    console.log('whas');
-
-    gameResults.value = await gameService.fetchGamesByYear(selectedYear.value, username);
+    const gameResults = await gameService.fetchGamesByYear(selectedYear.value, username);
+    gameStats.value = statisticService.mapResultsToHours(gameResults);
     loading.value = false;
   };
   onMounted(fetchGameStats);
@@ -23,7 +22,7 @@ export const useStats = (username: string) => {
 
   return {
     loading,
-    gameResults,
+    gameStats,
     selectedYear,
   };
 };

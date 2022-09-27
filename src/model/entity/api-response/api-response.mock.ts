@@ -1,12 +1,16 @@
-import type { GameResult } from '../game-result';
-import mockGameResults from '../game-result/game-result.mock';
+import mockGameDTOs from '@/model/dto/game-dto.mock';
+import type { IGameDTO } from '@/model/dto/game-dto.types';
 import type { IAPIResponse } from './api-response.types';
 
-export const mockApiResponseGameResultsOk = (): IAPIResponse<GameResult[]> => ({
-  data: mockGameResults(),
+export const mockApiResponseGameDTOsOk = (): IAPIResponse<IGameDTO[]> => ({
+  data: mockGameDTOs(),
 });
 
-export const mockApiResponseGameResultsError = (): IAPIResponse<GameResult[]> => ({
+export const mockApiResponseGameDTOsEmpty = (): IAPIResponse<IGameDTO[]> => ({
+  data: [],
+});
+
+export const mockApiResponseGameDTOsError = (): IAPIResponse<IGameDTO[]> => ({
   data: [],
   errorMessage: 'Error fetching from API',
 });

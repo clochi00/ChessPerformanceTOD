@@ -15,4 +15,15 @@ describe('>> Stats', () => {
       expect(stats.draws).toEqual(1);
     });
   });
+
+  describe('> getWLRatio()', () => {
+    it('calculates correctly', () => {
+      const stats = new Stats();
+      stats.addToStats(mockGameResults()[0]);
+      stats.addToStats(mockGameResults()[1]);
+      stats.addToStats(mockGameResults()[2]);
+      stats.addToStats(mockGameResults()[3]);
+      expect(stats.getWLRation()).toEqual(1);
+    });
+  });
 });

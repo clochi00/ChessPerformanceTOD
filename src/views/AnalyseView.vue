@@ -5,14 +5,27 @@
     <input @input="debounceYear" type="number" id="year" :value="selectedYear" />
   </form>
   <p v-if="loading">Loading ...</p>
-  <li v-else v-for="(item, index) in gameResults" :key="index">
-    {{ item.result }}
-  </li>
+  <table v-else>
+    <tr>
+      <th>Hour of day</th>
+      <th>Wins</th>
+      <th>Losses</th>
+      <th>Draws</th>
+    </tr>
+
+    <tr v-for="hour in 24" :key="hour">
+      <td>{{ hour - 1 }}</td>
+      <td>{{ getStats(hour - 1).wins }}</td>
+      <td>{{ getStats(hour - 1).losses }}</td>
+      <td>{{ getStats(hour - 1).draws }}</td>
+    </tr>
+  </table>
 </template>
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import { useStats } from '@/composables/stats';
+import { Stats, type IStats } from '@/model/entity';
 
 const username = useRoute().query.username as string;
 if (!username) {
@@ -28,7 +41,12 @@ const debounceYear = (event: Event) => {
   }, 1000);
 };
 
-const { gameResults, loading, selectedYear } = useStats(username);
+const { gameStats, loading, selectedYear } = useStats(username);
+const getStats = (hour: number): IStats => {
+  console.log(hour);
+
+  return gameStats.value.get(hour) ?? new Stats();
+};
 </script>
 
 <style scoped></style>

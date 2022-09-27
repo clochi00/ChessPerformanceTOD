@@ -24,4 +24,8 @@ export class Stats implements IStats {
         ++this.losses;
     }
   }
+
+  getWLRation(): number {
+    return this.wins - this.losses;
+  }
 }

@@ -4,6 +4,8 @@ import { getYear, getMonth } from 'date-fns';
 import { GameResult, type IGameResult } from '@/model/entity/game-result';
 
 import type { IGameService } from './game-service.types';
+import type { IAPIResponse } from '@/model/entity/api-response/api-response.types';
+import type { IGameDTO } from '@/model/dto/game-dto.types';
 
 export class GameService implements IGameService {
   constructor(private readonly gameAdapter: IGameAdapter) {
@@ -14,8 +16,15 @@ export class GameService implements IGameService {
     const result: IGameResult[] = [];
     const maxMonth = this.getMaxMonthForYear(year);
     for (let month = 1; month <= maxMonth; ++month) {
-      const response = await this.gameAdapter.fetchGamesForUserByYearAndMonth(username, year, month);
+      const response: IAPIResponse<IGameDTO[]> = await this.gameAdapter.fetchGamesForUserByYearAndMonth(
+        username,
+        year,
+        month,
+      );
+
       for (const dto of response.data) {
+        console.log(dto);
+
         result.push(new GameResult(dto, username));
       }
     }

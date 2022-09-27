@@ -21,7 +21,7 @@ export class GameAdapter implements IGameAdapter {
       );
 
       return {
-        data: data.games,
+        data: data.games ?? [],
       };
     } catch (error) {
       if (axios.isAxiosError(error)) {

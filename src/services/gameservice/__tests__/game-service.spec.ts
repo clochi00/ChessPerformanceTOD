@@ -5,6 +5,7 @@ import mockGameDTOs from '@/model/dto/game-dto.mock';
 import { EChessColor, EGameResult } from '@/model/entity';
 import { spyOn } from 'tinyspy';
 import { fromUnixTime } from 'date-fns';
+import { mockApiResponseGameDTOsOk, mockApiResponseGameDTOsEmpty } from '@/model/entity';
 
 describe('>> Game Service', () => {
   const mockAdapter = mockGameAdapter();
@@ -12,8 +13,8 @@ describe('>> Game Service', () => {
 
   describe('> fetchGamesForUserByYearAndMonth', () => {
     it('maps the entities correctly', async () => {
-      mockAdapter.fetchGamesForUserByYearAndMonth.mockResolvedValue([]);
-      mockAdapter.fetchGamesForUserByYearAndMonth.mockResolvedValueOnce(mockGameDTOs());
+      mockAdapter.fetchGamesForUserByYearAndMonth.mockResolvedValue(mockApiResponseGameDTOsEmpty());
+      mockAdapter.fetchGamesForUserByYearAndMonth.mockResolvedValueOnce(mockApiResponseGameDTOsOk());
       const result = await undertest.fetchGamesByYear(2022, 'clochi');
       expect(result.length).toEqual(mockGameDTOs().length);
       expect(result[0].result).toEqual(EGameResult.LOSE);
@@ -25,7 +26,7 @@ describe('>> Game Service', () => {
     });
 
     it('calls adapter for all 12 months when called with a past year', async () => {
-      mockAdapter.fetchGamesForUserByYearAndMonth.mockResolvedValue([]);
+      mockAdapter.fetchGamesForUserByYearAndMonth.mockResolvedValue(mockApiResponseGameDTOsEmpty());
       const spied = spyOn(mockAdapter, 'fetchGamesForUserByYearAndMonth');
       await undertest.fetchGamesByYear(2021, 'clochi');
 

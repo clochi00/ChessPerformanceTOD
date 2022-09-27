@@ -6,4 +6,6 @@ export interface IStats {
   draws: number;
 
   addToStats(result: IGameResult): void;
+
+  getWLRation(): number;
 }

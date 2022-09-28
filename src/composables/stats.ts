@@ -1,13 +1,16 @@
 import { ETimeClass } from '@/model/dto/game-dto.types';
 import type { IGameResult, IStats } from '@/model/entity';
 import { getYear } from 'date-fns';
-import { onMounted, ref, watch } from 'vue';
+import { nextTick, onMounted, ref, watch } from 'vue';
 import { useProvider } from './provider';
+import { useGameResultsCache } from './results-cache';
 
 const selectedClasses = ref(new Set<ETimeClass>([ETimeClass.RAPID, ETimeClass.BLITZ, ETimeClass.BULLET]));
 const username = ref(undefined as string | undefined);
 export const useStats = () => {
-  const { gameService, statisticService } = useProvider();
+  console.log('>>> useStats()');
+  const { statisticService } = useProvider();
+  const { fetchGameResultsByYear, clearCache } = useGameResultsCache();
   const loading = ref(true);
 
   const gameStats = ref(new Map<number, IStats>());
@@ -17,7 +20,7 @@ export const useStats = () => {
   const fetchGameStats = async () => {
     if (username.value) {
       loading.value = true;
-      gameResults.value = await gameService.fetchGamesByYear(selectedYear.value, username.value);
+      gameResults.value = await fetchGameResultsByYear(selectedYear.value, username.value);
       gameStats.value = filterGameStatsByTimeClass();
       loading.value = false;
     }
@@ -32,12 +35,21 @@ export const useStats = () => {
     );
   };
 
-  watch(selectedYear, fetchGameStats);
-  watch(selectedClasses.value, () => {
+  const timeClassFilterChanged = async () => {
+    loading.value = true;
+
     gameStats.value = filterGameStatsByTimeClass();
-  });
+
+    nextTick(() => {
+      loading.value = false;
+    });
+  };
+
+  watch(selectedYear, fetchGameStats);
+  watch(selectedClasses.value, timeClassFilterChanged);
 
   const setUsername = (user: string) => {
+    clearCache();
     username.value = user;
   };
 

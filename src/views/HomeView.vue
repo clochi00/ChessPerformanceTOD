@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <form>
       <p>Message is: {{ userName }}</p>
       <input type="text" placeholder="Username" v-model="userName" required />

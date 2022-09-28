@@ -1,32 +1,24 @@
 <template>
   <div class="container">
-    <h1>Stats for {{ username }}</h1>
-    <form>
+    <div class="stats-container">
+      <h1>Stats for {{ username }}</h1>
+
       <YearSelection :start-year="startYear" @year-changed="yearChanged" />
       <TimeClassSelection @class-added="addTimeClass" @class-removed="removeTimeClass" />
-    </form>
-    <p v-if="loading">Loading ...</p>
-    <table v-else>
-      <tr>
-        <th>Hour of day</th>
-        <th>W/L Ratio</th>
-      </tr>
-
-      <tr v-for="hour in 24" :key="hour">
-        <td>{{ hour - 1 }}</td>
-        <td>{{ getStats(hour - 1).getWLRatio() }}</td>
-      </tr>
-    </table>
+      <!-- <StatsPanel :game-stats="gameStats" :loading="loading" /> -->
+      <p v-if="loading">Loading ...</p>
+      <BarChart v-else :game-stats="gameStats" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import { useStats } from '@/composables/stats';
-import { Stats, type IStats } from '@/model/entity';
 import YearSelection from '../components/YearSelection.vue';
 import TimeClassSelection from '../components/TimeClassSelection.vue';
 import type { ETimeClass } from '@/model/dto/game-dto.types';
+import BarChart from '@/components/charts/barchart';
 
 const { gameStats, loading, setUsername, selectedYear, selectedClasses } = useStats();
 
@@ -50,11 +42,12 @@ const addTimeClass = (timeClass: ETimeClass) => {
 const removeTimeClass = (timeClass: ETimeClass) => {
   selectedClasses.value.delete(timeClass);
 };
-
-// Stats
-const getStats = (hour: number): IStats => {
-  return gameStats.value.get(hour) ?? new Stats();
-};
 </script>
 
-<style scoped></style>
+<style scoped>
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>

@@ -4,6 +4,7 @@ import { getYear, getMonth } from 'date-fns';
 import { GameResult, type IGameResult } from '@/model/entity/game-result';
 
 import type { IGameService } from './game-service.types';
+import { useLoadingProgress } from '@/composables/loading-progress';
 
 export class GameService implements IGameService {
   constructor(private readonly gameAdapter: IGameAdapter) {
@@ -11,9 +12,14 @@ export class GameService implements IGameService {
   }
 
   async fetchGamesByYear(year: number, username: string): Promise<IGameResult[]> {
+    const { resetProgress, addToProgress } = useLoadingProgress();
+    resetProgress();
     const result: IGameResult[] = [];
     const maxMonth = this.getMaxMonthForYear(year);
+    const progressChunk = 100 / maxMonth;
+
     for (let month = 1; month <= maxMonth; ++month) {
+      addToProgress(progressChunk);
       const response = await this.gameAdapter.fetchGamesForUserByYearAndMonth(username, year, month);
 
       for (const dto of response.data) {

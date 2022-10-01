@@ -1,8 +1,22 @@
+:root {
+  --chess-color: #7fa650;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
 html,
 body,
-#app,
-.container {
+#app {
   height: 100%;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
 }
 
 body {

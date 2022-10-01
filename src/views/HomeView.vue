@@ -1,10 +1,11 @@
 <template>
   <div class="container">
-    <form>
-      <p>Message is: {{ userName }}</p>
-      <input type="text" placeholder="Username" v-model="userName" required />
-      <button type="submit" @click.stop.prevent="submit()">Go!</button>
-    </form>
+    <div class="login-container">
+      <form>
+        <input type="text" placeholder="Username" v-model="userName" required />
+        <button type="submit" @click.stop.prevent="submit()">Go!</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -21,4 +22,10 @@ const submit = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>

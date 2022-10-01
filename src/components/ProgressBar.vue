@@ -14,6 +14,7 @@ defineProps<{
 
 <style scoped>
 .progressbar {
+  margin: auto;
   width: 30%;
   border: 1px solid gray;
   /* border-radius: 7px; */
@@ -24,7 +25,7 @@ defineProps<{
 .progressbar div {
   /* border-radius: 5px; */
   height: 10px;
-  background-color: #32a885;
+  background-color: var(--chess-color);
   transition: width 400ms ease;
 }
 
@@ -32,5 +33,6 @@ defineProps<{
   display: flex;
   justify-content: center;
   width: 100%;
+  height: 100%;
 }
 </style>

@@ -54,7 +54,7 @@ const { progress } = useLoadingProgress();
 
 <style scoped>
 .barcontainer {
-  height: 50%;
+  min-height: 400px;
   width: 100%;
 }
 .stats-container {

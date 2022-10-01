@@ -20,7 +20,7 @@ import { useRoute } from 'vue-router';
 import { useStats } from '@/composables/stats';
 import YearSelection from '../components/YearSelection.vue';
 import TimeClassSelection from '../components/TimeClassSelection.vue';
-import type { ETimeClass } from '@/model/dto/game-dto.types';
+import type { ETimeClass } from '@/model/dto/game/game-dto.types';
 import BarChart from '@/components/charts/BarChart.vue';
 import ProgressBar from '../components/ProgressBar.vue';
 import { useLoadingProgress } from '@/composables/loading-progress';
@@ -58,7 +58,6 @@ const { progress } = useLoadingProgress();
   width: 100%;
 }
 .stats-container {
-  height: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;

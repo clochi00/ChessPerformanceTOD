@@ -1,3 +1,3 @@
-export * from './game-adapter.mock';
-export * from './game-adapter.types';
-export * from './game-adapter';
+export * from './player-adapter.mock';
+export * from './player-adapter.types';
+export * from './player-adapter';

@@ -1,9 +1,9 @@
-import mockGameDTOs from '@/model/dto/game-dto.mock';
+import mockGameDTOs from '@/model/dto/game/game-dto.mock';
 
 import { describe, expect, it } from 'vitest';
 import { GameResult } from '../game-result';
 import { EChessColor, EGameResult } from '../';
-import { ETimeClass } from '@/model/dto/game-dto.types';
+import { ETimeClass } from '@/model/dto/game/game-dto.types';
 
 describe('>> GameResult', () => {
   it('maps its values correctly on instantiation', () => {

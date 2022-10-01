@@ -1,4 +1,4 @@
-import type { ETimeClass } from '@/model/dto/game-dto.types';
+import type { ETimeClass } from '@/model/dto/game/game-dto.types';
 
 export enum EGameResult {
   WIN = 'Win',

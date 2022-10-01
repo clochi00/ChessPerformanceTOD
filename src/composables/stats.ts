@@ -1,4 +1,4 @@
-import { ETimeClass } from '@/model/dto/game-dto.types';
+import { ETimeClass } from '@/model/dto/game/game-dto.types';
 import type { IGameResult, IStats } from '@/model/entity';
 import { getYear } from 'date-fns';
 import { nextTick, onMounted, ref, watch } from 'vue';

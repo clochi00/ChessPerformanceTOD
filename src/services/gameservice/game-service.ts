@@ -1,4 +1,4 @@
-import type { IGameAdapter } from '@/data/game-adapter.types';
+import type { IPlayerAdapter } from '@/data/player-adapter.types';
 import { getYear, getMonth } from 'date-fns';
 
 import { GameResult, type IGameResult } from '@/model/entity/game-result';
@@ -7,7 +7,7 @@ import type { IGameService } from './game-service.types';
 import { useLoadingProgress } from '@/composables/loading-progress';
 
 export class GameService implements IGameService {
-  constructor(private readonly gameAdapter: IGameAdapter) {
+  constructor(private readonly gameAdapter: IPlayerAdapter) {
     console.log('Service constructed');
   }
 
@@ -22,8 +22,10 @@ export class GameService implements IGameService {
       addToProgress(progressChunk);
       const response = await this.gameAdapter.fetchGamesForUserByYearAndMonth(username, year, month);
 
-      for (const dto of response.data) {
-        result.push(new GameResult(dto, username));
+      if (response.data) {
+        for (const dto of response.data) {
+          result.push(new GameResult(dto, username));
+        }
       }
     }
     return result;

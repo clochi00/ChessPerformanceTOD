@@ -1,20 +1,20 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { GameService } from '../game-service';
-import { mockGameAdapter } from '@/data/game-adapter.mock';
-import mockGameDTOs from '@/model/dto/game-dto.mock';
+import { mockPlayerAdapter } from '@/data/player-adapter.mock';
+import mockGameDTOs from '@/model/dto/game/game-dto.mock';
 import { EChessColor, EGameResult } from '@/model/entity';
 import { spyOn } from 'tinyspy';
 import { fromUnixTime } from 'date-fns';
 import { mockApiResponseGameDTOsOk, mockApiResponseGameDTOsEmpty } from '@/model/entity';
 
 describe('>> Game Service', () => {
-  let mockAdapter = mockGameAdapter();
+  let mockAdapter = mockPlayerAdapter();
   let undertest = new GameService(mockAdapter);
   mockAdapter.fetchGamesForUserByYearAndMonth.mockResolvedValue(mockApiResponseGameDTOsEmpty());
 
   describe('> fetchGamesForUserByYearAndMonth', () => {
     afterEach(() => {
-      mockAdapter = mockGameAdapter();
+      mockAdapter = mockPlayerAdapter();
       undertest = new GameService(mockAdapter);
       mockAdapter.fetchGamesForUserByYearAndMonth.mockResolvedValue(mockApiResponseGameDTOsEmpty());
     });

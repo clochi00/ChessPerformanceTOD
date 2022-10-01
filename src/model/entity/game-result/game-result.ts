@@ -1,4 +1,4 @@
-import type { ETimeClass, IGameDTO } from '@/model/dto/game-dto.types';
+import type { ETimeClass, IGameDTO } from '@/model/dto/game/game-dto.types';
 import { fromUnixTime } from 'date-fns';
 
 import { EChessColor, EGameResult, type IGameResult } from './game-result.types';

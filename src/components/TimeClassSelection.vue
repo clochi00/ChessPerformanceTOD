@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { ETimeClass } from '@/model/dto/game-dto.types';
+import { ETimeClass } from '@/model/dto/game/game-dto.types';
 
 const emit = defineEmits<{
   (e: 'classAdded', timeclass: ETimeClass): void;

@@ -1,11 +1,17 @@
 <template>
   <div class="timeclasses">
-    <label for="rapid">Rapid</label>
-    <input type="checkbox" id="rapid" @change="debounceTimeClasses" :value="ETimeClass.RAPID" checked />
-    <label for="blitz">Blitz</label>
-    <input type="checkbox" id="blitz" @change="debounceTimeClasses" :value="ETimeClass.BLITZ" checked />
-    <label for="bullet">Bullet</label>
-    <input type="checkbox" id="bullet" @change="debounceTimeClasses" :value="ETimeClass.BULLET" checked />
+    <div class="cb-and-label">
+      <label for="rapid">Rapid</label>
+      <input type="checkbox" id="rapid" @change="debounceTimeClasses" :value="ETimeClass.RAPID" checked />
+    </div>
+    <div class="cb-and-label">
+      <label for="blitz">Blitz</label>
+      <input type="checkbox" id="blitz" @change="debounceTimeClasses" :value="ETimeClass.BLITZ" checked />
+    </div>
+    <div class="cb-and-label">
+      <label for="bullet">Bullet</label>
+      <input type="checkbox" id="bullet" @change="debounceTimeClasses" :value="ETimeClass.BULLET" checked />
+    </div>
   </div>
 </template>
 
@@ -32,4 +38,18 @@ const debounceTimeClasses = (event: Event) => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.timeclasses {
+  display: flex;
+}
+
+.cb-and-label {
+  display: flex;
+  align-items: center;
+  padding: 1em;
+}
+
+.cb-and-label label {
+  margin-right: 5px;
+}
+</style>

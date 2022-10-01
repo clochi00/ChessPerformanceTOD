@@ -45,7 +45,7 @@ const debounceYearDown = () => {
   changeYearDebounced();
 };
 
-let debounce: ReturnType<typeof setTimeout> = setTimeout(() => '', 600);
+let debounce: ReturnType<typeof setTimeout> = setTimeout(() => '', 800);
 const debounceYearDirectInput = (event: Event) => {
   selectedYear.value = Number((event.target as HTMLInputElement).value) ?? selectedYear.value;
   changeYearDebounced();
@@ -55,7 +55,7 @@ const changeYearDebounced = () => {
   clearTimeout(debounce);
   debounce = setTimeout(() => {
     emit('yearChanged', selectedYear.value);
-  }, 1000);
+  }, 800);
 };
 </script>
 

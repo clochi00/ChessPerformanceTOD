@@ -54,10 +54,11 @@ const { progress } = useLoadingProgress();
 
 <style scoped>
 .barcontainer {
-  min-height: 400px;
-  width: 100%;
+  height: 500px;
+  width: 80%;
 }
 .stats-container {
+  padding-top: 2em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,5 +69,6 @@ const { progress } = useLoadingProgress();
   display: flex;
   width: 50%;
   justify-content: space-around;
+  padding: 2em;
 }
 </style>

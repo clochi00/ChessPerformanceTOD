@@ -5,7 +5,7 @@
 
       <form class="user-form">
         <input class="username-input" type="text" placeholder="Username" v-model="userName" required />
-        <button class="go-button {{loading ? 'inactive-btn' : '' }}" type="submit" @click.stop.prevent="submit()">
+        <button :class="'go-button ' + (loading ? 'inactive-btn' : '')" type="submit" @click.stop.prevent="submit()">
           Go!
         </button>
       </form>
@@ -47,7 +47,8 @@ const submit = async () => {
   text-align: center;
 }
 
-.inactive-btn {
+.inactive-btn,
+.go-button:active {
   background-color: darkgray;
 }
 

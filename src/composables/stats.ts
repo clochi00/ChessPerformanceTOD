@@ -21,6 +21,7 @@ export const useStats = () => {
     if (username.value) {
       loading.value = true;
       gameResults.value = await fetchGameResultsByYear(selectedYear.value, username.value);
+
       gameStats.value = filterGameStatsByTimeClass();
       loading.value = false;
     }

@@ -7,6 +7,10 @@ export const useLogin = () => {
   const { playerService } = useProvider();
 
   const userExists = async (username: string): Promise<boolean> => {
+    if (username == '') {
+      errorMsg.value = 'Please provide a username';
+      return false;
+    }
     loading.value = true;
     const response = await playerService.getPlayerByName(username);
     errorMsg.value = response.statuscode ? getErrorByStatus(response.statuscode) : 'Internal Error';

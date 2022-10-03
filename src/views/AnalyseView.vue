@@ -6,7 +6,7 @@
         <YearSelection :start-year="startYear" @year-changed="yearChanged" />
         <TimeClassSelection @class-added="addTimeClass" @class-removed="removeTimeClass" />
       </div>
-
+      <TimeFilters />
       <div class="barcontainer">
         <ProgressBar v-if="loading" :progress="progress" />
         <BarChart v-else :game-stats="gameStats" />
@@ -24,6 +24,7 @@ import type { ETimeClass } from '@/model/dto/game/game-dto.types';
 import BarChart from '@/components/charts/BarChart.vue';
 import ProgressBar from '../components/ProgressBar.vue';
 import { useLoadingProgress } from '@/composables/loading-progress';
+import TimeFilters from '../components/timefilters/TimeFilters.vue';
 
 const { gameStats, loading, setUsername, selectedYear, selectedClasses } = useStats();
 

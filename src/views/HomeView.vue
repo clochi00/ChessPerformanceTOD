@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="login-container">
-      <p>Start by typing in your (or someone elses) chess.com username and hit GO!</p>
+      <p>Start by typing in your chess.com username and hit GO!</p>
 
       <form class="user-form">
         <input class="username-input" type="text" placeholder="Username" v-model="userName" required />

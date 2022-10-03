@@ -39,6 +39,9 @@ const debounceTimeClasses = (event: Event) => {
 </script>
 
 <style scoped>
+input {
+  accent-color: green;
+}
 .timeclasses {
   display: flex;
 }

@@ -5,6 +5,7 @@ import { GameResult, type IGameResult } from '@/model/entity/game-result';
 
 import type { IGameService } from './game-service.types';
 import { useLoadingProgress } from '@/composables/loading-progress';
+import { ETimeClass, type IGameDTO } from '@/model/dto/game';
 
 export class GameService implements IGameService {
   constructor(private readonly gameAdapter: IPlayerAdapter) {
@@ -20,15 +21,23 @@ export class GameService implements IGameService {
 
     for (let month = 1; month <= maxMonth; ++month) {
       addToProgress(progressChunk);
+
       const response = await this.gameAdapter.fetchGamesForUserByYearAndMonth(username, year, month);
 
       if (response.data) {
         for (const dto of response.data) {
-          result.push(new GameResult(dto, username));
+          if (this.resultCounts(dto)) {
+            result.push(new GameResult(dto, username));
+          }
         }
       }
     }
+
     return result;
+  }
+
+  private resultCounts(dto: IGameDTO): boolean {
+    return dto.time_class != ETimeClass.DAILY && dto.rated;
   }
 
   private getMaxMonthForYear(year: number): number {

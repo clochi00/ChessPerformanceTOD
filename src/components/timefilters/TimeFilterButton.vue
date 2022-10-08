@@ -8,9 +8,6 @@ import { computed } from 'vue';
 const props = defineProps<{ title: String; days: number }>();
 const { daysBack, setTimeFilter } = useTimeFilter();
 const getBtnClass = computed((): string => {
-  console.log(daysBack.value);
-  console.log(props.days);
-
   return daysBack.value == props.days ? 'active-time-filter' : '';
 });
 </script>

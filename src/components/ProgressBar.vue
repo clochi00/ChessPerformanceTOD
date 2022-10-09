@@ -1,5 +1,6 @@
 <template>
   <div class="progressbar-container">
+    <p class="loading-text">Loading Games ...</p>
     <div class="progressbar">
       <div :style="{ width: progress + '%' }"></div>
     </div>
@@ -13,8 +14,13 @@ defineProps<{
 </script>
 
 <style scoped>
+
+.loading-text {
+  padding: 1em;
+}
+
 .progressbar {
-  margin: auto;
+  /*margin: auto;*/
   width: 30%;
   border: 1px solid gray;
   /* border-radius: 7px; */
@@ -32,6 +38,8 @@ defineProps<{
 .progressbar-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
   height: 100%;
 }

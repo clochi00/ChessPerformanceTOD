@@ -3,9 +3,9 @@
     <div class="stats-container">
       <h1>Stats for {{ username }}</h1>
       <div class="filters">
-        <TimeClassSelection @class-added="addTimeClass" @class-removed="removeTimeClass" />
+        <TimeClassSelection @class-added="addTimeClass" @class-removed="removeTimeClass" :loading="loading"/>
       </div>
-      <TimeFilters />
+      <TimeFilters :loading="loading"/>
       <div class="barcontainer">
         <ProgressBar v-if="loading" :progress="progress" />
         <BarChart v-else :game-stats="gameStats" />

@@ -8,7 +8,6 @@ import { useTimeFilter } from '@/composables/timefilter';
 const selectedClasses = ref(new Set<ETimeClass>([ETimeClass.RAPID, ETimeClass.BLITZ, ETimeClass.BULLET]));
 const username = ref(undefined as string | undefined);
 export const useGameResults = () => {
-  console.log('>>> useGameResults()');
   const gameResults1Year = ref([] as IGameResult[]);
   const gameResultsTimeFiltered = ref([] as IGameResult[]);
   const gameStats = ref(new Map<number, IStats>());

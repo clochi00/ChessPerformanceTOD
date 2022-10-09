@@ -2,15 +2,15 @@
   <div class="timeclasses">
     <div class="cb-and-label">
       <label for="rapid">Rapid</label>
-      <input type="checkbox" id="rapid" @change="debounceTimeClasses" :value="ETimeClass.RAPID" checked />
+      <input type="checkbox" id="rapid" @change="debounceTimeClasses" :value="ETimeClass.RAPID" checked :disabled="loading" />
     </div>
     <div class="cb-and-label">
       <label for="blitz">Blitz</label>
-      <input type="checkbox" id="blitz" @change="debounceTimeClasses" :value="ETimeClass.BLITZ" checked />
+      <input type="checkbox" id="blitz" @change="debounceTimeClasses" :value="ETimeClass.BLITZ" checked :disabled="loading"/>
     </div>
     <div class="cb-and-label">
       <label for="bullet">Bullet</label>
-      <input type="checkbox" id="bullet" @change="debounceTimeClasses" :value="ETimeClass.BULLET" checked />
+      <input type="checkbox" id="bullet" @change="debounceTimeClasses" :value="ETimeClass.BULLET" checked :disabled="loading"/>
     </div>
   </div>
 </template>
@@ -22,6 +22,8 @@ const emit = defineEmits<{
   (e: 'classAdded', timeclass: ETimeClass): void;
   (e: 'classRemoved', timeclass: ETimeClass): void;
 }>();
+
+defineProps<{ loading: boolean }>();
 
 let debounce: ReturnType<typeof setTimeout> = setTimeout(() => '', 200);
 const debounceTimeClasses = (event: Event) => {

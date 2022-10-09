@@ -1,11 +1,11 @@
 <template>
-  <button :class="getBtnClass" @click="setTimeFilter(days)">{{ title }}</button>
+  <button :class="getBtnClass" @click="setTimeFilter(days)" :disabled="loading">{{ title }}</button>
 </template>
 
 <script setup lang="ts">
 import { useTimeFilter } from '@/composables/timefilter';
 import { computed } from 'vue';
-const props = defineProps<{ title: String; days: number }>();
+const props = defineProps<{ title: String; days: number, loading: boolean }>();
 const { daysBack, setTimeFilter } = useTimeFilter();
 const getBtnClass = computed((): string => {
   return daysBack.value == props.days ? 'active-time-filter' : '';

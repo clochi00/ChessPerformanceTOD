@@ -32,7 +32,7 @@ export const useLogin = () => {
   };
 
   return {
-    loading,
+    fetchingResults: loading,
     errorMsg,
     userExists,
   };

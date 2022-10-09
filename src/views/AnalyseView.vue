@@ -3,7 +3,6 @@
     <div class="stats-container">
       <h1>Stats for {{ username }}</h1>
       <div class="filters">
-        <YearSelection :start-year="startYear" @year-changed="yearChanged" />
         <TimeClassSelection @class-added="addTimeClass" @class-removed="removeTimeClass" />
       </div>
       <TimeFilters />
@@ -17,16 +16,17 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { useStats } from '@/composables/stats';
-import YearSelection from '../components/YearSelection.vue';
 import TimeClassSelection from '../components/TimeClassSelection.vue';
 import type { ETimeClass } from '@/model/dto/game/game-dto.types';
 import BarChart from '@/components/charts/BarChart.vue';
 import ProgressBar from '../components/ProgressBar.vue';
 import { useLoadingProgress } from '@/composables/loading-progress';
 import TimeFilters from '../components/timefilters/TimeFilters.vue';
+import {useGameResults} from "@/composables/game-results";
 
-const { gameStats, loading, setUsername, selectedYear, selectedClasses } = useStats();
+
+
+const { loading, setUsername, selectedClasses, gameStats } = useGameResults()
 
 // Set Username
 const username = useRoute().query.username as string;
@@ -34,12 +34,6 @@ if (!username) {
   throw Error('No username provided. This should never happen');
 }
 setUsername(username);
-
-// Year Selection
-const startYear = selectedYear.value;
-const yearChanged = (year: number) => {
-  selectedYear.value = year;
-};
 
 // Time Classes
 const addTimeClass = (timeClass: ETimeClass) => {
@@ -51,6 +45,7 @@ const removeTimeClass = (timeClass: ETimeClass) => {
 
 // Progress
 const { progress } = useLoadingProgress();
+
 </script>
 
 <style scoped>

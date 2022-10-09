@@ -8,9 +8,7 @@ import { useLoadingProgress } from '@/composables/loading-progress';
 import { ETimeClass, type IGameDTO } from '@/model/dto/game';
 
 export class GameService implements IGameService {
-  constructor(private readonly gameAdapter: IPlayerAdapter) {
-    console.log('Service constructed');
-  }
+  constructor(private readonly gameAdapter: IPlayerAdapter) {}
 
   async fetchGamesByDaysBack(daysBack: number, username: string): Promise<IGameResult[]> {
     const { resetProgress } = useLoadingProgress();
@@ -56,7 +54,6 @@ export class GameService implements IGameService {
   ): Promise<IGameResult[]> {
     const result: IGameResult[] = [];
     const { addToProgress } = useLoadingProgress();
-    // const progressChunk = 100 / 13;
     for (let month = startMonth; month <= tilMonth; ++month) {
       addToProgress(progressChunk);
 
